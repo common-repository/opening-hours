@@ -1,0 +1,34 @@
+{
+    "landingPage": "\/wp-admin\/admin.php?page=opening_hours",
+    "preferredVersions": {
+        "php": "8.2",
+        "wp": "latest"
+    },
+    "phpExtensionBundles": [
+        "kitchen-sink"
+    ],
+    "features": {
+        "networking": true
+    },
+    "steps": [
+        {
+            "step": "installPlugin",
+            "pluginZipFile": {
+                "resource": "url",
+                "url": "https:\/\/downloads.wordpress.org\/plugin\/opening-hours.zip"
+            },
+            "options": {
+                "activate": true
+            }
+        },
+        {
+            "step": "login",
+            "username": "admin",
+            "password": "password"
+        },
+        {
+          "step": "runPHP",
+          "code": "<?php require_once 'wordpress/wp-load.php';$shortcode='[open class='.chr(34).'day-start hour-start'.chr(34).']';$pgd=2;$pt=get_post($pgd);$pfx='we_are_open_';update_option($pfx.'regular',array(array('closed'=>!1,'hours'=>array(array('10:00','17:00')),'hours_24'=>!1,'modified'=>time()),array('closed'=>!1,'hours'=>array(array('10:00','17:00')),'hours_24'=>!1,'modified'=>time()),array('closed'=>!0,'hours'=>array(),'hours_24'=>!1,'modified'=>time()),array('closed'=>!0,'hours'=>array(),'hours_24'=>!1,'modified'=>time()),array('closed'=>!1,'hours'=>array(array('10:00','17:00')),'hours_24'=>!1,'modified'=>time()),array('closed'=>!1,'hours'=>array(array('10:00','17:00')),'hours_24'=>!1,'modified'=>time()),array('closed'=>!1,'hours'=>array(array('10:00','17:00')),'hours_24'=>!1,'modified'=>time())));update_option($pfx.'api_key','AIzaSyB7h_ddN22sLdx7KnMPJ9HfRGiNDpfUfco','no');update_option($pfx.'place_id','ChIJK092aEpzbqoR1exlPQa0ccI','no');update_option($pfx.'consolidation','');update_option($pfx.'day_format','full');update_option($pfx.'time_format','24_colon');update_option($pfx.'week_start',1);update_option($pfx.'time_type',24);update_option($pfx.'google_result',array('html_attributions'=>array(),'result'=>array('business_status'=>'OPERATIONAL','name'=>'MONA','opening_hours'=>array('open_now'=>!1,'periods'=>array(array('close'=>array('day'=>0,'time'=>'1700'),'open'=>array('day'=>0,'time'=>'1000')),array('close'=>array('day'=>1,'time'=>'1700'),'open'=>array('day'=>1,'time'=>'1000')),array('close'=>array('day'=>4,'time'=>'1700'),'open'=>array('day'=>4,'time'=>'1000')),array('close'=>array('day'=>5,'time'=>'1700'),'open'=>array('day'=>5,'time'=>'1000')),array('close'=>array('day'=>6,'time'=>'1700'),'open'=>array('day'=>6,'time'=>'1000'))),'weekday_text'=>array('Monday: 10:00 AM – 5:00 PM','Tuesday: Closed','Wednesday: Closed','Thursday: 10:00 AM – 5:00 PM','Friday: 10:00 AM – 5:00 PM','Saturday: 10:00 AM – 5:00 PM','Sunday: 10:00 AM – 5:00 PM')),'url'=>'https://maps.google.com/?cid=14011177854619217109'),'status'=>'OK'),'no');if(is_object($pt)&&isset($pt->post_content)&&!preg_match('/We’re Open!/i',$pt->post_content)):wp_update_post(array('ID'=>$pgd,'post_content'=>'<!-- wp:paragraph -->'.PHP_EOL.'<p>The Shortcode for <em>We’re Open!</em> is placed in the following block:</p>'.PHP_EOL.'<!-- /wp:paragraph -->'.PHP_EOL.PHP_EOL.'<!-- wp:shortcode -->'.PHP_EOL.$shortcode.PHP_EOL.'<!-- /wp:shortcode -->'.PHP_EOL.PHP_EOL.$pt->post_content,'post_title'=>$pt->post_title.' with We’re Open!'));endif; ?>"
+        }
+    ]
+}
